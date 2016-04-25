@@ -4,3 +4,6 @@
 # like packages building, packages downloading from mirrors and so on.
 # The script should return 0 if there were no errors.
 
+# It might be useful to create actions for downloading binary files
+# (packages, ISO, etc) here, so you won't need to update plugin repository
+# just to change such files

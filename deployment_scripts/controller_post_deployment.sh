@@ -21,6 +21,9 @@ function create_image {
 	local image_file
 	image_file="$3"
 
+
+# We recommend to use API instead of CLI tools
+
 	if ! glance image-list | grep -q "$image_name"; then
 		glance image-create \
 			--name "$image_name" \
@@ -38,6 +41,15 @@ function mod_novnc {
 	public_ip=$(python - <<EOF
 import sys
 import yaml
+#We recommend to use hiera lookups to get configuration parameters
+#as generally they could be overridden for some nodes
+#
+#Hiera Lookups frim bash
+#
+#STR=$(hiera “str”) 
+#HASH=$(hiera -h “hash_name”) 
+#ARRAY=$(hiera -a “array_name”)
+
 astute=yaml.load(open('/etc/astute.yaml'))
 print astute['network_metadata']['vips']['public']['ipaddr']
 EOF
